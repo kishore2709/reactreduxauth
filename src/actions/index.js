@@ -58,7 +58,7 @@ export function authError(error) {
 
 export function fetchMessage() {
   return function (dispatch) {
-    axios.get('', {
+    axios.get('page/msg', {
       headers: {authorization: localStorage.getItem('token')}
     })
       .then(response => {
