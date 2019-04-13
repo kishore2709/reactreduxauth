@@ -14,6 +14,70 @@ import {
 const ROLE_ADMIN = "ADMIN";
 
 class Header extends Component {
+  renderUserRoleBasedLinks() {
+    if (this.props.authenticated) {
+      if (this.props.auth.user.roles.includes(ROLE_ADMIN)) {
+        return (
+          <Link component={RouterLink} to="/admin">
+            Admin Menu
+          </Link>
+        );
+      } else {
+        return (
+          <Link component={RouterLink} to="/user">
+            User Menu
+          </Link>
+        );
+      }
+    }
+  }
+
+  renderLinks() {
+    if (this.props.authenticated) {
+      return [
+        <ListItemText inset>
+          <TypoGraphy variant="title">
+            <Link component={RouterLink} to="/feature">
+              Protected Site{" "}
+            </Link>
+          </TypoGraphy>
+        </ListItemText>,
+
+        <ListItemText inset>
+          <TypoGraphy variant="title">
+            {this.renderUserRoleBasedLinks()}
+          </TypoGraphy>
+        </ListItemText>,
+
+        <ListItemText inset>
+          <TypoGraphy variant="title">
+            <Link component={RouterLink} to="/signout">
+              Sign Out
+            </Link>
+          </TypoGraphy>
+        </ListItemText>
+      ];
+    } else {
+      return [
+        <ListItemText inset>
+          <TypoGraphy variant="title">
+            <Link component={RouterLink} to="/signin">
+              Login
+            </Link>
+          </TypoGraphy>
+        </ListItemText>,
+
+        <ListItemText inset>
+          <TypoGraphy variant="title">
+            <Link component={RouterLink} to="/signup">
+              Sign up
+            </Link>
+          </TypoGraphy>
+        </ListItemText>
+      ];
+    }
+  }
+
   render() {
     return (
       <div>
@@ -48,6 +112,14 @@ class Header extends Component {
               <ListItem component="div">
                 <ListItemText inset>
                   <TypoGraphy variant="title">
+                    <Link component={RouterLink} to="/">
+                      Home
+                    </Link>
+                  </TypoGraphy>
+                </ListItemText>
+
+                <ListItemText inset>
+                  <TypoGraphy variant="title">
                     <Link component={RouterLink} to="/aboutus">
                       About Us
                     </Link>
@@ -62,7 +134,9 @@ class Header extends Component {
                   </TypoGraphy>
                 </ListItemText>
 
-                <ListItemText inset>
+                {this.renderLinks()}
+
+                {/* <ListItemText inset>
                   <TypoGraphy variant="title">
                     <Link component={RouterLink} to="/signin">
                       Login
@@ -76,7 +150,7 @@ class Header extends Component {
                       Sign up
                     </Link>
                   </TypoGraphy>
-                </ListItemText>
+                </ListItemText>*/}
               </ListItem>
             </List>
           </Toolbar>
