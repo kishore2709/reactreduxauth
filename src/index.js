@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
-import Header from "./containers/layout/header";
-import Head from "./containers/layout/head";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/Footer";
 
 import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
@@ -14,11 +14,11 @@ import jwt_decode from "jwt-decode";
 import Signin from "./containers/auth/signin";
 import Signout from "./components/auth/signout";
 import Signup from "./containers/auth/signup";
-import Aboutus from "./containers/pages/aboutus";
-import Contactus from "./containers/pages/contactus";
+import Aboutus from "./components/pages/aboutus";
+import Contactus from "./components/pages/contactus";
 
 import { PrivateRoute } from "./containers/auth/require_auth";
-import Feature from "./containers/feature";
+import Feature from "./components/feature";
 import reducers from "./reducers";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Admin from "./components/admin/adminpanel";
@@ -55,6 +55,8 @@ ReactDOM.render(
           <PrivateRoute path="/user" component={UserPanel} />
 
           <PrivateRoute path="/feature" component={Feature} />
+
+          <Footer />
         </div>
       </MuiThemeProvider>
     </Router>

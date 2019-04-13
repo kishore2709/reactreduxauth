@@ -103,7 +103,6 @@ class Header extends Component {
                 marginLeft: "auto",
                 align: "right",
                 borderRadius: 3,
-                color: "white",
                 height: 48,
                 padding: "0 30px"
               }}

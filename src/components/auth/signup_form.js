@@ -23,7 +23,6 @@ class SignupForm extends Component {
       <div>
         <Grid
           container
-          spacing={40}
           direction="column"
           alignItems="center"
           justify="center"
