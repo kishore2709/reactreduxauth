@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ROLE_ADMIN = "ADMIN";
 
-class Header extends Component {
+class Head extends Component {
   renderUserRoleBasedLinks() {
     if (this.props.authenticated) {
       if (this.props.auth.user.roles.includes(ROLE_ADMIN)) {
@@ -81,4 +81,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Head);

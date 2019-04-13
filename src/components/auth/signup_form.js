@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import Button from "@material-ui/core/Button";
 import { renderTextField } from "./form_helpers";
+import Grid from "@material-ui/core/Grid";
 
 class SignupForm extends Component {
   renderAlert() {
@@ -20,45 +21,54 @@ class SignupForm extends Component {
 
     return (
       <div>
-        {this.renderAlert()}
-        <form onSubmit={handleSubmit}>
-          <Field
-            placeholder="Name"
-            name="name"
-            component={renderTextField}
-            type="text"
-          />
-          <Field
-            placeholder="Email"
-            name="email"
-            component={renderTextField}
-            type="text"
-          />
-          <Field
-            placeholder="Username"
-            name="username"
-            component={renderTextField}
-            type="text"
-          />
+        <Grid
+          container
+          spacing={40}
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "35vh" }}
+        >
+          {this.renderAlert()}
+          <form onSubmit={handleSubmit}>
+            <Field
+              placeholder="Name"
+              name="name"
+              component={renderTextField}
+              type="text"
+            />
+            <Field
+              placeholder="Email"
+              name="email"
+              component={renderTextField}
+              type="text"
+            />
+            <Field
+              placeholder="Username"
+              name="username"
+              component={renderTextField}
+              type="text"
+            />
 
-          <Field
-            placeholder="Password"
-            name="password"
-            component={renderTextField}
-            type="password"
-          />
+            <Field
+              placeholder="Password"
+              name="password"
+              component={renderTextField}
+              type="password"
+            />
 
-          <Field
-            placeholder="Password Confirmation"
-            name="passwordConfirmation"
-            component={renderTextField}
-            type="password"
-          />
+            <Field
+              placeholder="Password Confirmation"
+              name="passwordConfirmation"
+              component={renderTextField}
+              type="password"
+            />
 
-          <Button variant="raised" color="primary" type="submit">
-            Sign Up
-          </Button>
-        </form>
+            <Button variant="raised" color="primary" type="submit">
+              Sign Up
+            </Button>
+          </form>
+        </Grid>
       </div>
     );
   }
