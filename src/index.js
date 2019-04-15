@@ -42,20 +42,34 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        <div>
+        <div
+          style={{
+            "min-height": "100vh",
+            overflow: " hidden",
+            display: "block",
+            position: " relative",
+            "padding-bottom": "100px"
+          }}
+        >
           <Header />
-          <Route path="/" exact={true} component={Welcome} />
-          <Route path="/signin" component={Signin} />
-          <Route path="/signout" component={Signout} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/aboutus" component={Aboutus} />
-          <Route path="/contactus" component={Contactus} />
+          <div
+            style={{
+              "margin-top": "80px",
+              "margin-bottom": "60px"
+            }}
+          >
+            <Route path="/" exact={true} component={Welcome} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/signout" component={Signout} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/aboutus" component={Aboutus} />
+            <Route path="/contactus" component={Contactus} />
 
-          <PrivateRoute path="/admin" component={Admin} />
-          <PrivateRoute path="/user" component={UserPanel} />
+            <PrivateRoute path="/admin" component={Admin} />
+            <PrivateRoute path="/user" component={UserPanel} />
 
-          <PrivateRoute path="/feature" component={Feature} />
-
+            <PrivateRoute path="/feature" component={Feature} />
+          </div>
           <Footer />
         </div>
       </MuiThemeProvider>

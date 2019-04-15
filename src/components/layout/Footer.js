@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -7,11 +6,13 @@ import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import { List, ListItem, Typography as TypoGraphy } from "@material-ui/core";
 
 const styles = theme => ({
   flex: {
     flexGrow: 1
   },
+
   footer: {
     padding: 5,
     position: "absolute",
@@ -19,8 +20,15 @@ const styles = theme => ({
     left: 0,
     bottom: 0,
     right: 0,
-
-    backgroundColor: "#1E88E5"
+    width: "100%",
+    //height: "100px",
+    backgroundColor: "#fff"
+  },
+  list: {
+    display: "flex",
+    flexDirection: "row",
+    "align-items": "center",
+    " justify-content": "center"
   }
 });
 
@@ -31,33 +39,113 @@ class Footer extends React.Component {
     return (
       <Paper className={classes.footer}>
         <Grid container spacing={8}>
-          <Grid item xs={12} sm={6} md={6}>
-            <Typography variant="subheading" color="inherit">
-              Footer Content
-            </Typography>
-
-            <Typography color="inherit" variant="caption">
-              You can use rows and columns of Material-UI Grid here to organize
-              your footer content.
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={6} />
-
           <Divider />
-
-          <AppBar position="static">
-            <Toolbar variant="dense">
+          <AppBar
+            position="static"
+            style={{ background: "#1b577d", alignItems: "center" }}
+          >
+            <Toolbar>
               <Typography
                 variant="caption"
                 color="inherit"
                 className={classes.flex}
+                style={{ alignItems: "center" }}
               >
+                <br />
                 The Air Resources Board is one of six boards, departments, and
                 offices under the California Environmental Protection Agency.
               </Typography>
-              <Typography color="inherit" variant="caption">
-                Copyright © 2019 State of California{" "}
+            </Toolbar>
+            <Toolbar>
+              <Typography variant="caption">
+                <List
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <ListItem>
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://www.calepa.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CalEPA
+                    </a>
+                    &nbsp; &nbsp;| &nbsp;
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://www.calrecycle.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      CalRecycle
+                    </a>
+                    &nbsp; &nbsp;| &nbsp;
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://www.cdpr.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      &nbsp; DPR
+                    </a>
+                    &nbsp; &nbsp;| &nbsp;
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://www.dtsc.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      &nbsp; DTSC
+                    </a>
+                    &nbsp; &nbsp;| &nbsp;
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://oehha.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      &nbsp; OEHHA
+                    </a>
+                    &nbsp; &nbsp;| &nbsp;
+                    <a
+                      style={{
+                        color: "#FCBB00",
+                        textDecoration: "none"
+                      }}
+                      href="https://www.waterboards.ca.gov/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      &nbsp; SWRCB
+                    </a>
+                  </ListItem>
+                </List>
+                <div
+                  style={{
+                    color: "white"
+                  }}
+                >
+                  Copyright © 2019 State of California
+                </div>
               </Typography>
             </Toolbar>
           </AppBar>

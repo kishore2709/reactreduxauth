@@ -62,7 +62,7 @@ class SignupForm extends Component {
               component={renderTextField}
               type="password"
             />
-
+            <br />
             <Button variant="raised" color="primary" type="submit">
               Sign Up
             </Button>

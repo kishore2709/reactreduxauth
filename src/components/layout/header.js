@@ -81,7 +81,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <AppBar color="light" position="static">
+        <AppBar color="light" position="fixed">
           <Toolbar>
             <TypoGraphy variant="title" color="inherit">
               <Link component={RouterLink} to="/">
