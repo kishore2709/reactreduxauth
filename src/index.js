@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
-import Header from "./components/layout/header";
-import Footer from "./components/layout/Footer";
+import Header1 from "./components/layout/header1";
+import Footer1 from "./components/layout/Footer1";
 
 import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
@@ -51,11 +51,11 @@ ReactDOM.render(
             "padding-bottom": "100px"
           }}
         >
-          <Header />
+          <Header1 />
           <div
             style={{
               "margin-top": "80px",
-              "margin-bottom": "60px"
+              "margin-bottom": "260px"
             }}
           >
             <Route path="/" exact={true} component={Welcome} />
@@ -70,7 +70,7 @@ ReactDOM.render(
 
             <PrivateRoute path="/feature" component={Feature} />
           </div>
-          <Footer />
+          <Footer1 />
         </div>
       </MuiThemeProvider>
     </Router>

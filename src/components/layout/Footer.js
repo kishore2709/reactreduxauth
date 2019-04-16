@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { List, ListItem, Typography as TypoGraphy } from "@material-ui/core";
+import { List, ListItem } from "@material-ui/core";
 
 const styles = theme => ({
   flex: {
@@ -37,7 +37,10 @@ class Footer extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Paper className={classes.footer}>
+      <Paper
+        className={classes.footer}
+        style={{ background: "#1b577d", alignItems: "center" }}
+      >
         <Grid container spacing={8}>
           <Divider />
           <AppBar
