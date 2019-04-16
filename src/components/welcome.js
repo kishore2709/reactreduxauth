@@ -5,7 +5,7 @@ import "../../node_modules/font-awesome/css/font-awesome.min.css";
 export default () => {
   return (
     <div>
-      <Typography variant="display1" align="center" gutterBottom>
+      <Typography variant="h4" align="center" gutterBottom>
         <p>
           <strong>
             Welcome to the Portable Equipment Registration Program (PERP)

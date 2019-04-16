@@ -5,13 +5,16 @@ class Contactus extends Component {
   render() {
     return (
       <div>
-        <Typography variant="display1" align="center" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom>
           <p>
             <strong>
               Welcome to the Portable Equipment Registration Program (PERP)
             </strong>
           </p>
-          <br />
+        </Typography>
+
+        <br />
+        <Typography variant="body1" align="center" gutterBottom>
           <p>
             Statewide Portable Equipment Registration Program (PERP)
             <br />

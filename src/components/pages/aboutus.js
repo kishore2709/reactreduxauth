@@ -11,7 +11,9 @@ class Aboutus extends Component {
               Welcome to the Portable Equipment Registration Program (PERP)
             </strong>
           </p>
-          <br />
+        </Typography>
+        <br />
+        <Typography variant="body1" align="center" gutterBottom>
           <p>
             Owners or Operators of portable engines and other types of equipment
             can register their units under the CARB Statewide Portable Equipment

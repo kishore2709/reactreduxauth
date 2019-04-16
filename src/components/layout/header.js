@@ -157,16 +157,24 @@ class Header extends Component {
               <div className="settings-links">
                 <ul>
                   <li>
-                    <a href="#">Calendar</a>
+                    <Link to="#" component={RouterLink}>
+                      Calendar
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">Help &amp; FAQs</a>
+                    <Link to="#" component={RouterLink}>
+                      Help &amp; FAQs
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
+                    <Link to="#" component={RouterLink}>
+                      Contact
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">Careers</a>
+                    <Link to="#" component={RouterLink}>
+                      Careers
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -177,14 +185,24 @@ class Header extends Component {
               >
                 <ul className="links">
                   <li hrefLang="en" className="en">
-                    <a href="#" className="language-link active" hrefLang="en">
+                    <Link
+                      to="#"
+                      component={RouterLink}
+                      className="language-link active"
+                      hrefLang="en"
+                    >
                       English
-                    </a>
+                    </Link>
                   </li>
                   <li hrefLang="es" className="es">
-                    <a href="#" className="language-link" hrefLang="es">
+                    <Link
+                      to="#"
+                      component={RouterLink}
+                      className="language-link"
+                      hrefLang="es"
+                    >
                       Español
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </span>
