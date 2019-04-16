@@ -6,7 +6,7 @@ class Footer extends React.Component {
   render() {
     return (
       <footer
-        class="footer"
+        className="footer"
         style={{
           position: "absolute",
           left: 0,

@@ -63,7 +63,7 @@ class SignupForm extends Component {
               type="password"
             />
             <br />
-            <Button variant="raised" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Sign Up
             </Button>
           </form>

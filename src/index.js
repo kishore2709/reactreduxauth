@@ -30,7 +30,11 @@ import UserPanel from "./components/user/userpanel";
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem("token");
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true
+  }
+});
 
 if (token) {
   const decoded = jwt_decode(token);
@@ -44,18 +48,18 @@ ReactDOM.render(
       <MuiThemeProvider theme={theme}>
         <div
           style={{
-            "min-height": "100vh",
+            minHeight: "100vh",
             overflow: " hidden",
             display: "block",
             position: " relative",
-            "padding-bottom": "100px"
+            paddingBottom: "100px"
           }}
         >
           <Header />
           <div
             style={{
-              "margin-top": "80px",
-              "margin-bottom": "260px"
+              // marginTop: "80px",
+              marginBottom: "260px"
             }}
           >
             <Route path="/" exact={true} component={Welcome} />

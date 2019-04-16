@@ -14,6 +14,9 @@ export function signinUser({ email, password }) {
     request
       .then(response => {
         // -Save the JWT token
+        console.log("response.data");
+
+        console.log(response.data);
         localStorage.setItem("token", response.data.accessToken);
         // -if request is good, we need to update state to indicate user is authenticated
         // Decode token to get user data

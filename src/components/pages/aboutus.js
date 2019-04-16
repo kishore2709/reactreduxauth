@@ -5,7 +5,7 @@ class Aboutus extends Component {
   render() {
     return (
       <div>
-        <Typography variant="display1" align="center" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom>
           <p>
             <strong>
               Welcome to the Portable Equipment Registration Program (PERP)

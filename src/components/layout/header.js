@@ -37,7 +37,7 @@ class Header extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       return [
-        <li className="nav__item is-collapsed">
+        <li key={1} className="nav__item is-collapsed">
           <Link
             component={RouterLink}
             to="/feature"
@@ -47,11 +47,11 @@ class Header extends Component {
           </Link>
         </li>,
 
-        <li className="nav__item is-collapsed">
+        <li key={2} className="nav__item is-collapsed">
           {this.renderUserRoleBasedLinks()}
         </li>,
 
-        <li className="nav__item is-collapsed">
+        <li key={3} className="nav__item is-collapsed">
           <Link
             component={RouterLink}
             to="/signout"
@@ -63,7 +63,7 @@ class Header extends Component {
       ];
     } else {
       return [
-        <li className="nav__item is-collapsed">
+        <li key={1} className="nav__item is-collapsed">
           <Link
             component={RouterLink}
             to="/signin"
@@ -73,7 +73,7 @@ class Header extends Component {
           </Link>
         </li>,
 
-        <li className="nav__item is-collapsed">
+        <li key={2} className="nav__item is-collapsed">
           <Link
             component={RouterLink}
             to="/signup"
@@ -87,6 +87,10 @@ class Header extends Component {
   }
 
   render() {
+    const auth = this.props.auth;
+
+    console.log("auth");
+    // console.log(auth.user.username);
     return (
       <div>
         <div className="utility-header">
@@ -121,23 +125,16 @@ class Header extends Component {
                   action="https://ww2.arb.ca.gov/search/site"
                   method="get"
                   id="search-block-form"
-                  accept-charset="UTF-8"
                 >
                   <div className="form-item form-item--textfield form-item--id-keys js-form-item js-form-type-textfield js-form-item-keys has-no-label">
-                    <label
-                      for="edit-keys--2"
-                      className="form-item__label visually-hidden"
-                    >
+                    <label className="form-item__label visually-hidden">
                       Search
                     </label>
                     <input
                       title="Enter the terms you wish to search for."
                       type="text"
-                      id="edit-keys--2"
                       name="keys"
-                      value=""
                       size="30"
-                      maxlength="128"
                       className="form-item__text"
                     />
                   </div>
@@ -179,13 +176,13 @@ class Header extends Component {
                 role="navigation"
               >
                 <ul className="links">
-                  <li hreflang="en" className="en">
-                    <a href="#" className="language-link active" hreflang="en">
+                  <li hrefLang="en" className="en">
+                    <a href="#" className="language-link active" hrefLang="en">
                       English
                     </a>
                   </li>
-                  <li hreflang="es" className="es">
-                    <a href="#" className="language-link" hreflang="es">
+                  <li hrefLang="es" className="es">
+                    <a href="#" className="language-link" hrefLang="es">
                       Español
                     </a>
                   </li>

@@ -44,7 +44,7 @@ class SigninForm extends Component {
               placeholder="Password"
             />
             <br />
-            <Button variant="raised" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Sign In
             </Button>
           </form>
