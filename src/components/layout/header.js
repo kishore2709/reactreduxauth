@@ -2,12 +2,31 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 
 import "../../style/navstyle.css";
 const ROLE_ADMIN = "ADMIN";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null
+    };
+  }
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   renderUserRoleBasedLinks() {
     if (this.props.authenticated) {
       if (this.props.auth.user.roles.includes(ROLE_ADMIN)) {
@@ -35,7 +54,14 @@ class Header extends Component {
   }
 
   renderLinks() {
+    const { anchorEl } = this.state;
+
     if (this.props.authenticated) {
+      const auth = this.props.auth;
+      let userName;
+      if (this.props.auth) {
+        userName = auth.user.username;
+      }
       return [
         <li key={1} className="nav__item is-collapsed">
           <Link
@@ -50,8 +76,42 @@ class Header extends Component {
         <li key={2} className="nav__item is-collapsed">
           {this.renderUserRoleBasedLinks()}
         </li>,
+        // <li key={3} className="nav__item is-collapsed">
+        //   <Link
+        //     component={RouterLink}
+        //     to="#"
+        //     className="nav__link is-collapsed"
+        //     aria-owns={anchorEl ? "simple-menu" : undefined}
+        //     aria-haspopup="true"
+        //     onClick={this.handleClick}
+        //     onMouseOver={this.handleClick}
+        //   >
+        //     {"Logged in as " + userName}
+        //   </Link>
 
-        <li key={3} className="nav__item is-collapsed">
+        //   <Menu
+        //     className="nav__link is-collapsed"
+        //     id="simple-menu"
+        //     anchorEl={anchorEl}
+        //     getContentAnchorEl={null}
+        //     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        //     transformOrigin={{ vertical: "top", horizontal: "center" }}
+        //     open={Boolean(anchorEl)}
+        //     onClose={this.handleClose}
+        //   >
+        //     <MenuItem>
+        //       <Link
+        //         component={RouterLink}
+        //         to="/signout"
+        //         className="nav__link is-collapsed"
+        //       >
+        //         Sign Out
+        //       </Link>
+        //     </MenuItem>
+        //   </Menu>
+        // </li>
+
+        <li key={3} className="nav__item is-collapsed dropdown">
           <Link
             component={RouterLink}
             to="/signout"
@@ -87,10 +147,6 @@ class Header extends Component {
   }
 
   render() {
-    const auth = this.props.auth;
-
-    console.log("auth");
-    // console.log(auth.user.username);
     return (
       <div>
         <div className="utility-header">
