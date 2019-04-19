@@ -1,16 +1,19 @@
 import axios from "../axios/axios";
 import { UNAUTH_USER, AUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from "./types";
 import jwt_decode from "jwt-decode";
+import {API_CONSTANT_MAP}  from "../api/apiMap";
+
 
 //const ROOT_URL = 'http://localhost:3090'
 //const credentials = { usernameOrEmail: "kishore20", password: "secret" };
 export function signinUser({ email, password }) {
   const credentials = { usernameOrEmail: email, password: password };
-
+  const endPoint = API_CONSTANT_MAP.login;
+  console.log(endPoint);
   return function(dispatch) {
     // submit email and password to server
-    //const request = axios.post(`auth/signin`, { email, password });
-    const request = axios.post(`auth/signin`, credentials);
+    //const request = axios.post(`auth/signin`, credentials);
+    const request = axios.post(endPoint, credentials);
     request
       .then(response => {
         // -Save the JWT token
