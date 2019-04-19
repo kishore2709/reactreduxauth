@@ -1,9 +1,11 @@
 import { apiPost } from './apiEndpoints';
 import {API_CONSTANT_MAP}  from "./apiMap";
-import {AUTH_USER,UNAUTH_USER,AUTH_ERROR} from "../actions/types";
 import jwt_decode from "jwt-decode";
 //endpoint, data, isForm
-export function signinUser({ email, password }) {
+ const AUTH_USER = 'auth_user';
+ const UNAUTH_USER = 'unauth_user';
+ const AUTH_ERROR = 'auth_error';
+ export function signinUser({ email, password }) {
   const credentials = { usernameOrEmail: email, password: password };
   const endPoint = API_CONSTANT_MAP.login;
   const request = apiPost({
