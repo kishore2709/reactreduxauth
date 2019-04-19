@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 
 import "../../style/navstyle.css";

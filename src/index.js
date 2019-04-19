@@ -12,7 +12,7 @@ import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
 
 import Signin from "./containers/auth/signin";
-import Signout from "./components/auth/signout";
+import Signout from "./containers/auth/signout";
 import Signup from "./containers/auth/signup";
 import Aboutus from "./components/pages/aboutus";
 import Contactus from "./components/pages/contactus";

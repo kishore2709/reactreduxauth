@@ -1,6 +1,6 @@
 import { apiPost } from './apiEndpoints';
 import {API_CONSTANT_MAP}  from "./apiMap";
-import {AUTH_USER,AUTH_ERROR} from "../actions/types";
+import {AUTH_USER,UNAUTH_USER,AUTH_ERROR} from "../actions/types";
 import jwt_decode from "jwt-decode";
 //endpoint, data, isForm
 export function signinUser({ email, password }) {
@@ -12,6 +12,7 @@ export function signinUser({ email, password }) {
       isForm: false
     })
     return function(dispatch) {
+      console.log("response.data");
     request
       .then(response => {
         // -Save the JWT token
@@ -32,7 +33,46 @@ export function signinUser({ email, password }) {
       });
   }
 };
-  
+
+export function signoutUser() {
+  localStorage.removeItem("token");
+  return {
+    type: UNAUTH_USER
+  };
+}
+
+export function signupUser({
+  name,
+  email,
+  username,
+  password,
+  passwordConfirmation
+}) {
+  const credentials = {
+    name: name,
+    email: email,
+    username: username,
+    password: password,
+    passwordConfirmation: passwordConfirmation
+  };
+  const endPoint = API_CONSTANT_MAP.signup;
+  const request = apiPost({
+      endpoint: endPoint,
+      data: credentials,
+      isForm: false
+    })
+  return function(dispatch) {
+    request
+      .then(response => {
+        dispatch({ type: AUTH_USER });
+        localStorage.setItem("token", response.data.token);
+      })
+      .catch(({ response }) => {
+        dispatch(authError(response.data.error));
+      });
+  };
+}
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,

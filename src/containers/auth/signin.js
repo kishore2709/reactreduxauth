@@ -1,10 +1,28 @@
 import React, { Component } from "react";
-import SigninForm from "../../components/auth/signin_form";
-import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import { reduxForm, Field } from "redux-form";
+import { renderTextField } from "../../utilities/form_helpers";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import {signinUser} from "../../api/apiLogin";
 class Signin extends Component {
+  state = {
+    email: "",
+    password: "",
+    errors: {}
+  };
+
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops: </strong>
+          {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
   componentWillUnmount() {
     if (this.props.errorMessage) {
       this.props.authError(null);
@@ -20,8 +38,13 @@ class Signin extends Component {
     );
   }
 
-  handleSubmit({ email, password }) {
-    this.props.signinUser({ email, password });
+  handleSubmit= e => {
+    e.preventDefault();
+    const loginCredentials = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.signinUser(loginCredentials);
   }
 
   getRedirectPath() {
@@ -34,8 +57,8 @@ class Signin extends Component {
   }
 
   render() {
-    return this.props.authenticated ? (
-      <Redirect
+    if (this.props.authenticated ){
+      return <Redirect
         to={{
           pathname: this.getRedirectPath(),
           state: {
@@ -43,13 +66,39 @@ class Signin extends Component {
           }
         }}
       />
-    ) : (
+    }
+    return (
       <div>
         {this.displayRedirectMessages()}
-        <SigninForm
-          onSubmit={this.handleSubmit.bind(this)}
-          errorMessage={this.props.errorMessage}
-        />
+         <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "25vh" }}
+        >
+          {this.renderAlert()}
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <Field
+              name="email"
+              component={renderTextField}
+              type="text"
+              placeholder="Username"
+            />
+
+            <Field
+              name="password"
+              component={renderTextField}
+              type="password"
+              placeholder="Password"
+            />
+            <br />
+            <Button variant="contained" color="primary" type="submit">
+              Sign In
+            </Button>
+          </form>
+        </Grid>
+      
       </div>
     );
   }
@@ -62,7 +111,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
+Signin = connect(
   mapStateToProps,
-  actions
+  {signinUser} 
 )(Signin);
+
+
+Signin = reduxForm({
+  form: "signin"
+})(Signin);
+
+export default Signin;
