@@ -11,13 +11,13 @@ import Footer from "./components/layout/Footer";
 import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
 
-import Signin from "./containers/auth/signin";
-import Signout from "./containers/auth/signout";
-import Signup from "./containers/auth/signup";
+import Signin from "./components/auth/signin";
+import Signout from "./components/auth/signout";
+import Signup from "./components/auth/signup";
 import Aboutus from "./components/pages/aboutus";
 import Contactus from "./components/pages/contactus";
 
-import { PrivateRoute } from "./containers/auth/require_auth";
+import { PrivateRoute } from "./components/auth/require_auth";
 import Feature from "./components/feature";
 import reducers from "./reducers";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
