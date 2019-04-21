@@ -17,15 +17,11 @@ export async function apiGet(endpoint) {
 export async function apiPost(endpoint, data, isForm) {
   const params = { session: getSession() }
 
-  const headers = isForm
-    ? { 'Content-Type': 'multipart/form-data' }
-    : { 'Content-Type': 'appliation/json' }
-
+  
   const res = await axios({
     method: 'post',
     url: endpoint,
     params: params,
-    headers: headers,
     data: data
   })
 

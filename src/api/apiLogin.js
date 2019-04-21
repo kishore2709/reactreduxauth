@@ -8,11 +8,7 @@ import jwt_decode from "jwt-decode";
  export function signinUser({ email, password }) {
   const credentials = { usernameOrEmail: email, password: password };
   const endPoint = API_CONSTANT_MAP.login;
-  const request = apiPost({
-      endpoint: endPoint,
-      data: credentials,
-      isForm: false
-    })
+  const request = apiPost(endPoint, credentials, false)
     return function(dispatch) {
       console.log("response.data");
     request

@@ -47,6 +47,13 @@ class Signin extends Component {
     this.props.signinUser(loginCredentials);
   }
 
+  onChangeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+
   getRedirectPath() {
     const locationState = this.props.location.state;
     if (locationState && locationState.from.pathname) {
@@ -84,6 +91,8 @@ class Signin extends Component {
               component={renderTextField}
               type="text"
               placeholder="Username"
+              value={this.state.email}
+              onChange={this.onChangeHandler}
             />
 
             <Field
@@ -91,6 +100,8 @@ class Signin extends Component {
               component={renderTextField}
               type="password"
               placeholder="Password"
+              value={this.state.password}
+              onChange={this.onChangeHandler}
             />
             <br />
             <Button variant="contained" color="primary" type="submit">
