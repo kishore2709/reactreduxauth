@@ -36,6 +36,13 @@ const theme = createMuiTheme({
   }
 });
 
+window.addEventListener("beforeunload", (ev) => 
+{  
+  localStorage.removeItem("token");
+    ev.preventDefault();
+    return ev.returnValue = 'Are you sure you want to close?';
+});
+                                                              
 if (token) {
   const decoded = jwt_decode(token);
 

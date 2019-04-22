@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import {signoutUser} from "../../api/apiLogin";
+
 class Signout extends Component {
   componentWillMount() {
     this.props.signoutUser();
@@ -17,5 +18,5 @@ class Signout extends Component {
 
 export default connect(
   null,
-  actions
+  {signoutUser} 
 )(Signout);
