@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/Footer";
+import Dashboard from "./components/layout/Dashboard/Dashboard";
+
 
 import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
@@ -78,6 +80,7 @@ ReactDOM.render(
 
             <PrivateRoute path="/admin" component={Admin} />
             <PrivateRoute path="/user" component={UserPanel} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
 
             <PrivateRoute path="/feature" component={Feature} />
           </div>

@@ -60,7 +60,7 @@ class Signin extends Component {
     if (locationState && locationState.from.pathname) {
       return locationState.from.pathname; // redirects to referring url
     } else {
-      return "/";
+      return "/dashboard";
     }
   }
 
