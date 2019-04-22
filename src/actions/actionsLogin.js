@@ -1,5 +1,5 @@
-import { apiPost } from './apiEndpoints';
-import {API_CONSTANT_MAP}  from "./apiMap";
+import { apiPost } from '../api/apiEndpoints';
+import {API_CONSTANT_MAP}  from "../api/apiMap";
 import jwt_decode from "jwt-decode";
 //endpoint, data, isForm
  const AUTH_USER = 'auth_user';

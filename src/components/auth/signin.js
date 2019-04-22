@@ -5,7 +5,8 @@ import { reduxForm, Field } from "redux-form";
 import { renderTextField } from "../../utilities/form_helpers";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import {signinUser} from "../../api/apiLogin";
+import {signinUser} from "../../actions/actionsLogin";
+
 class Signin extends Component {
   state = {
     email: "",
