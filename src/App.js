@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect,Switch } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/Footer";
@@ -24,6 +24,9 @@ import reducers from "./reducers";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Admin from "./components/admin/adminpanel";
 import UserPanel from "./components/user/userpanel";
+
+import LoginLayoutRoute from "./layouts/LoginLayout";  
+import DashboardLayoutRoute3 from "./layouts/DashboardLayout.1";  
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap with material-ui
 //injectTapEventPlugin()
@@ -58,6 +61,7 @@ class App extends Component {
       return (
         <Provider store={store}>
           <Router>
+          <Switch>  
       <MuiThemeProvider theme={theme}>
         <div
           style={{
@@ -68,30 +72,32 @@ class App extends Component {
             paddingBottom: "100px"
           }}
         >
-          <Header />
+        
           <div
             style={{
               // marginTop: "80px",
               marginBottom: "260px"
             }}
           >
-            <Route path="/" exact={true} component={Welcome} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/signout" component={Signout} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/aboutus" component={Aboutus} />
-            <Route path="/contactus" component={Contactus} />
+            <LoginLayoutRoute path="/" exact={true} component={Welcome} />
+            <LoginLayoutRoute path="/signin" component={Signin} />
+            <LoginLayoutRoute path="/signout" component={Signout} />
+            <LoginLayoutRoute path="/signup" component={Signup} />
+            <LoginLayoutRoute path="/aboutus" component={Aboutus} />
+            <LoginLayoutRoute path="/contactus" component={Contactus} />
 
+            <DashboardLayoutRoute3 path="/dashboard" component={Dashboard} /> 
             <PrivateRoute path="/admin" component={Admin} />
             <PrivateRoute path="/user" component={UserPanel} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
 
             <PrivateRoute path="/feature" component={Feature} />
           </div>
-          <Footer />
         </div>
       </MuiThemeProvider>
+      </Switch> 
     </Router>
+     
         </Provider>
       );
     }
