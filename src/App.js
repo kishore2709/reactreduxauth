@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
-import { BrowserRouter as Router, Route, Redirect,Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
-import Header from "./components/layout/header";
-import Footer from "./components/layout/Footer";
 import Dashboard from "./components/layout/Dashboard/Dashboard";
 
 
@@ -25,8 +23,9 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Admin from "./components/admin/adminpanel";
 import UserPanel from "./components/user/userpanel";
 
-import LoginLayoutRoute from "./layouts/LoginLayout";  
-import DashboardLayoutRoute3 from "./layouts/DashboardLayout.1";  
+import LoginLayout from "./layouts/LoginLayout";  
+import DashboardLayout from "./layouts/DashboardLayout";  
+import AppRoute from "./routes/AppRoute";
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap with material-ui
 //injectTapEventPlugin()
@@ -79,14 +78,14 @@ class App extends Component {
               marginBottom: "260px"
             }}
           >
-            <LoginLayoutRoute path="/" exact={true} component={Welcome} />
-            <LoginLayoutRoute path="/signin" component={Signin} />
-            <LoginLayoutRoute path="/signout" component={Signout} />
-            <LoginLayoutRoute path="/signup" component={Signup} />
-            <LoginLayoutRoute path="/aboutus" component={Aboutus} />
-            <LoginLayoutRoute path="/contactus" component={Contactus} />
+            <AppRoute path="/" exact={true} layout={LoginLayout} component={Welcome} />
+            <AppRoute path="/signin" layout={LoginLayout} component={Signin} />
+            <AppRoute path="/signout" layout={LoginLayout} component={Signout} />
+            <AppRoute path="/signup" layout={LoginLayout} component={Signup} />
+            <AppRoute path="/aboutus" layout={LoginLayout} component={Aboutus} />
+            <AppRoute path="/contactus" layout={LoginLayout} component={Contactus} />
 
-            <DashboardLayoutRoute3 path="/dashboard" component={Dashboard} /> 
+            <PrivateRoute path="/dashboard" layout={DashboardLayout} component={Dashboard} /> 
             <PrivateRoute path="/admin" component={Admin} />
             <PrivateRoute path="/user" component={UserPanel} />
             <PrivateRoute path="/dashboard" component={Dashboard} />

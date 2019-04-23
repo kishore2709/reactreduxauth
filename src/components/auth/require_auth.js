@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-export const PrivateRoute = ({ component: ComposedComponent, ...rest }) => {
+export const PrivateRoute = ({ component: CompoundComponent, layout: Layout, ...rest }) => {
   class Authentication extends Component {
     // redirect if not authenticated; otherwise, return the component imputted into <PrivateRoute />
     handleRender(props) {
@@ -19,7 +19,10 @@ export const PrivateRoute = ({ component: ComposedComponent, ...rest }) => {
           />
         );
       } else {
-        return <ComposedComponent {...props} />;
+        return (
+        <Layout>
+        <CompoundComponent {...props} />
+        </Layout>);
       }
     }
 

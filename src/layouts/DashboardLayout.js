@@ -1,27 +1,13 @@
-import React, { Component } from 'react';  
-import { Route } from 'react-router-dom';  
+import React from 'react';   
 import Footer from "../components/layout/Footer";
 
   
-const DashboardLayout = ({children, ...rest}) => {  
-  return (  
+const DashboardLayout = props => (  
     <div className="page page-dashboard">  
       <div className="sidebar">
       <Footer/>
       </div>  
-      <div className="main">{children}</div>  
+      <div className="main"> {props.children}</div>  
     </div>  
   )  
-}  
-  
-const DashboardLayoutRoute = ({component: Component, ...rest}) => {  
-  return (  
-    <Route {...rest} render={matchProps => (  
-      <DashboardLayout>  
-          <Component {...matchProps} />  
-      </DashboardLayout>  
-    )} />  
-  )  
-};  
-  
-export default DashboardLayoutRoute;  
+export default DashboardLayout;  

@@ -1,29 +1,15 @@
-import React, { Component } from 'react';  
-import { Route } from 'react-router-dom';  
+import React from 'react';  
 import Header from "../components/layout/header";
 import Footer from "../components/layout/Footer";
   
-const LoginLayout = ({ children }) => (           
+const LoginLayout  = props => (           
     <div>  
       <Header/>            
-      {children}    
+      {props.children} 
       <Footer/>                                   
     </div>  
                        
    
   );  
   
-  const LoginLayoutRoute = ({component: Component, ...rest}) => {  
-    return (  
-    //  <Header />
-      <Route {...rest} render={matchProps => (  
-        
-        <LoginLayout>  
-            <Component {...matchProps} />  
-        </LoginLayout>  
-      )} />  
-   //   <Footer />  
-    )  
-  };  
-  
-export default LoginLayoutRoute;  
+export default LoginLayout;  
