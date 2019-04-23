@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AUTH_USER } from "./actions/types";
 import Dashboard from "./components/layout/Dashboard/Dashboard";
 
-
+import { publicRoutes, dashboardRoutes } from "./routes/index";
 import Welcome from "./components/welcome";
 import jwt_decode from "jwt-decode";
 
@@ -23,8 +23,8 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Admin from "./components/admin/adminpanel";
 import UserPanel from "./components/user/userpanel";
 
-import LoginLayout from "./layouts/LoginLayout";  
-import DashboardLayout from "./layouts/DashboardLayout";  
+import LoginLayout from "./layouts/LoginLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 import AppRoute from "./routes/AppRoute";
 //import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap with material-ui
@@ -39,67 +39,70 @@ const theme = createMuiTheme({
   }
 });
 
-window.addEventListener("beforeunload", (ev) => 
-{  
+window.addEventListener("beforeunload", ev => {
   localStorage.removeItem("token");
-    ev.preventDefault();
-    return ev.returnValue = 'Are you sure you want to close?';
+  ev.preventDefault();
+  return (ev.returnValue = "Are you sure you want to close?");
 });
-                                                              
+
 if (token) {
   const decoded = jwt_decode(token);
 
   store.dispatch({ type: AUTH_USER, payload: decoded });
 }
 class App extends Component {
-    state = {
-      name: ""
-    };
-  
-    render() {
-      return (
-        <Provider store={store}>
-          <Router>
-          <Switch>  
-      <MuiThemeProvider theme={theme}>
-        <div
-          style={{
-            minHeight: "100vh",
-            overflow: " hidden",
-            display: "block",
-            position: " relative",
-            paddingBottom: "100px"
-          }}
-        >
-        
-          <div
-            style={{
-              // marginTop: "80px",
-              marginBottom: "260px"
-            }}
-          >
-            <AppRoute path="/" exact={true} layout={LoginLayout} component={Welcome} />
-            <AppRoute path="/signin" layout={LoginLayout} component={Signin} />
-            <AppRoute path="/signout" layout={LoginLayout} component={Signout} />
-            <AppRoute path="/signup" layout={LoginLayout} component={Signup} />
-            <AppRoute path="/aboutus" layout={LoginLayout} component={Aboutus} />
-            <AppRoute path="/contactus" layout={LoginLayout} component={Contactus} />
+  state = {
+    name: ""
+  };
 
-            <PrivateRoute path="/dashboard" layout={DashboardLayout} component={Dashboard} /> 
-            <PrivateRoute path="/admin" component={Admin} />
-            <PrivateRoute path="/user" component={UserPanel} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <MuiThemeProvider theme={theme}>
+              <div
+                style={{
+                  minHeight: "100vh",
+                  overflow: " hidden",
+                  display: "block",
+                  position: " relative",
+                  paddingBottom: "100px"
+                }}
+              >
+                <div
+                  style={{
+                    // marginTop: "80px",
+                    marginBottom: "260px"
+                  }}
+                >
+                  {publicRoutes.map(route => (
+                    <AppRoute
+                      exact
+                      path={route.path}
+                      component={route.component}
+                      layout={route.layout}
+                      key={route.path}
+                    />
+                  ))}
 
-            <PrivateRoute path="/feature" component={Feature} />
-          </div>
-        </div>
-      </MuiThemeProvider>
-      </Switch> 
-    </Router>
-     
-        </Provider>
-      );
-    }
+                  {dashboardRoutes.map(route => (
+                    <PrivateRoute
+                      exact
+                      path={route.path}
+                      layout={route.layout}
+                      component={route.component}
+                      key={route.path}
+                    />
+                  ))}
+                </div>
+              </div>
+            </MuiThemeProvider>
+          </Switch>
+        </Router>
+      </Provider>
+    );
   }
-  
-  export default App;
+}
+
+export default App;

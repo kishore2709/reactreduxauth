@@ -1,16 +1,16 @@
-import { apiPost } from '../api/apiEndpoints';
-import {API_CONSTANT_MAP}  from "../api/apiMap";
+import { apiPost } from "../api/apiEndpoints";
+import { API_CONSTANT_MAP } from "../api/apiMap";
 import jwt_decode from "jwt-decode";
 //endpoint, data, isForm
- const AUTH_USER = 'auth_user';
- const UNAUTH_USER = 'unauth_user';
- const AUTH_ERROR = 'auth_error';
- export function signinUser({ email, password }) {
+const AUTH_USER = "auth_user";
+const UNAUTH_USER = "unauth_user";
+const AUTH_ERROR = "auth_error";
+export function signinUser({ email, password }) {
   const credentials = { usernameOrEmail: email, password: password };
   const endPoint = API_CONSTANT_MAP.login;
-  const request = apiPost(endPoint, credentials, false)
-    return function(dispatch) {
-      console.log("response.data");
+  const request = apiPost(endPoint, credentials, false);
+  return function(dispatch) {
+    console.log("response.data");
     request
       .then(response => {
         // -Save the JWT token
@@ -29,8 +29,8 @@ import jwt_decode from "jwt-decode";
       .catch(() => {
         dispatch(authError("bad login info"));
       });
-  }
-};
+  };
+}
 
 export function signoutUser() {
   localStorage.removeItem("token");
@@ -55,10 +55,10 @@ export function signupUser({
   };
   const endPoint = API_CONSTANT_MAP.signup;
   const request = apiPost({
-      endpoint: endPoint,
-      data: credentials,
-      isForm: false
-    })
+    endpoint: endPoint,
+    data: credentials,
+    isForm: false
+  });
   return function(dispatch) {
     request
       .then(response => {
